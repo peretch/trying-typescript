@@ -1,0 +1,22 @@
+{
+  "name": "trying-typescript",
+  "version": "1.0.0",
+  "description": "Just trying typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peretch/trying-typescript.git"
+  },
+  "author": "sebastian@peretch.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peretch/trying-typescript/issues"
+  },
+  "homepage": "https://github.com/peretch/trying-typescript#readme",
+  "dependencies": {
+    "axios": "^0.21.4"
+  }
+}
