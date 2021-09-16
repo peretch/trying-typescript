@@ -136893,6 +136893,10 @@ var User = function () {
     };
   }
 
+  User.prototype.markerContent = function () {
+    return "User name: <strong>" + this.name + "</strong>";
+  };
+
   return User;
 }();
 
@@ -136924,6 +136928,10 @@ var Company = function () {
     };
   }
 
+  Company.prototype.markerContent = function () {
+    return "<strong>" + this.companyName + "</strong> <em>\"" + this.companyPhrase + "\"</em>";
+  };
+
   return Company;
 }();
 
@@ -136946,49 +136954,23 @@ var CustomMap = function () {
         lng: 0
       }
     });
-  } // addMarker bad example implementation (in two separate functions)
-  // ---------- BEGIN -----------
-  // ----- BAD CODE EXAMPLE -----
-  // public addUserMarker(user: User): void {
-  //   const maker = new google.maps.Marker({
-  //     map: this.googleMap,
-  //     position: {
-  //       lat: user.location.lat,
-  //       lng: user.location.lng,
-  //     },
-  //   });
-  // }
-  // public addCompanyMarker(company: Company): void {
-  //   const maker = new google.maps.Marker({
-  //     map: this.googleMap,
-  //     position: {
-  //       lat: company.location.lat,
-  //       lng: company.location.lng,
-  //     },
-  //   });
-  // }
-  // addMarker other bad implementation implementation
-  // public addMarker(mappable: User | Company): void {
-  //   const maker = new google.maps.Marker({
-  //     map: this.googleMap,
-  //     position: {
-  //       lat: mappable.location.lat,
-  //       lng: mappable.location.lng,
-  //     },
-  //   });
-  // }
-  // ----- BAD CODE EXAMPLE -----
-  // ----------- END ------------
-  // CORRECT IMPLEMENTATION
-
+  }
 
   CustomMap.prototype.addMarker = function (mappable) {
-    var maker = new google.maps.Marker({
+    var _this = this;
+
+    var marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
         lat: mappable.location.lat,
         lng: mappable.location.lng
       }
+    });
+    marker.addListener('click', function () {
+      var infoWindow = new google.maps.InfoWindow({
+        content: mappable.markerContent()
+      });
+      infoWindow.open(_this.googleMap, marker);
     });
   };
 
@@ -137011,9 +136993,7 @@ var CustomMap_1 = require("./CustomMap");
 
 var user = new User_1.User();
 var company = new Company_1.Company();
-var customMap = new CustomMap_1.CustomMap('map'); // customMap.addUserMarker(user);
-// customMap.addCompanyMarker(company);
-
+var customMap = new CustomMap_1.CustomMap('map');
 customMap.addMarker(user);
 customMap.addMarker(company);
 },{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
