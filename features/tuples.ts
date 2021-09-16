@@ -9,6 +9,6 @@ const drink = {
 // We declare the exact order in types, instead of (string | boolean | number)
 const pepsi: [string, boolean, number] = ['brown', true, 40];
 
-type Drink = [string, boolean, number];
-const sprinte: Drink = ['clear', true, 40];
-const tea: Drink = ['brown', false, 0];
+type DrinkType = [string, boolean, number];
+const sprinte: DrinkType = ['clear', true, 40];
+const tea: DrinkType = ['brown', false, 0];
